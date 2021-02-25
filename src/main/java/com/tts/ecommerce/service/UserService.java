@@ -1,13 +1,18 @@
 package com.tts.ecommerce.service;
 
+import com.tts.ecommerce.model.Product;
+import com.tts.ecommerce.model.User;
 import com.tts.ecommerce.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -18,8 +23,11 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public static boolean findByUsername(String username) {
+    }
+
     public User findByUserName(String username) {
-        return userRepository.findByUsername(username);
+        return (User) userRepository.findByUsername(username);
     }
 
     public void saveNew(User user) {
